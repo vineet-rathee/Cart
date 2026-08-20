@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "concurrently \"npx nodemon server.js\" \"cd ../auth && npx nodemon server.js\" \"cd ../product && npx nodemon server.js\""
   },
   "keywords": [],
   "author": "",
@@ -17,5 +18,8 @@
     "express-http-proxy": "^2.1.2",
     "http": "^0.0.1-security",
     "nodemon": "^3.1.14"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
   }
 }

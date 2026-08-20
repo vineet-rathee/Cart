@@ -8,7 +8,7 @@ db.on("error", (err) => {
 });
 
 db.once("open", () => {
-    console.log("✅ MongoDB Connected");
+    console.log(`✅ MongoDB Connected at auth server at port ${process.env.PORT}`);
 });
 
 module.exports = db;
