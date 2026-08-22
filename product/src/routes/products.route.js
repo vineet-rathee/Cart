@@ -18,4 +18,5 @@ router.get("/products/:id",controller.product);
 router.get("/products",controller.products);
 router.get("/products/:id/stock",controller.getStock);
 
+
 module.exports=router;

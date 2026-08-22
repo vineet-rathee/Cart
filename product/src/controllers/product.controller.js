@@ -93,11 +93,24 @@ async function findProductByuser(req, res) {
   res.status(200).send(products);
 }
 
-async function product(req,res) {
-    const id=req.params.id;
-    const product=await productModel.findOne({_id:id});
-    if(!product) return res.status(400).json({valid:"false",message:"!! no product found !! "});
-    res.status(200).json({valid:"true",product});
+async function product(req, res) {
+    console.log("REQ PARAM:", req.params.id);
+
+    const id = req.params.id;
+
+    const product = await productModel.findOne({ _id: id });
+
+    if (!product) {
+        return res.status(404).json({
+            valid: false,
+            message: "!! no product found !!"
+        });
+    }
+
+    return res.status(200).json({
+        valid: true,
+        product
+    });
 }
 
 async function products(req,res) {
@@ -126,7 +139,18 @@ async function updateStock(req,res) {
     res.status(201).send("stock updated");
 }
 
-
+//internal routes controller
+async function getProduct(params) {
+  const user_id=req.id;
+  const product_id=req.params.id;
+  const product=await productModel.findOne({_id:product_id});
+  if(!product) return res.status(400).json({valid:"true",message:"!! no product found !!"});
+  res.send(200).json({
+    valid:"true",
+    user:user_id,
+    product:product_id,
+    quantity:product.quantity,});
+}
 
 module.exports = {
   addProduct,
@@ -138,5 +162,6 @@ module.exports = {
   product,
   products,
   getStock,
-  updateStock
+  updateStock,
+  getProduct,
 };
