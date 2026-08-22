@@ -6,4 +6,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookie());
 
+const cartRoute=require("./routes/cart.routes");
+
+app.use("/",cartRoute);
+
 module.exports=app;
